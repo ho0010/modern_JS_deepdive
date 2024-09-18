@@ -1,14 +1,21 @@
+<<<<<<< Updated upstream
+=======
+<br />
+
+>>>>>>> Stashed changes
 # 1주차
 
 <br />
 
 ## 1 : false가 나오는 이유??
+
 ```
 0 == []; //true
 0 == "0"; //true
 "0" == []; //false
 ```
 
+<<<<<<< Updated upstream
 ```
 암묵적 타입 변환을 잘 생각해보면 됩니다
 
@@ -19,9 +26,12 @@
 3. 먼저 []을 primitive 값으로 변환하려고하기 때문에 빈 문자열 “”이 됩니다. 문자열 “0”와 빈문자열 “”를 비교하게 되어 false가 나옵니다.
 ```
 
+=======
+>>>>>>> Stashed changes
 <br />
 
 ## 2 : 이때 End of Body, script1, script2, DOMC~~ 순서??
+
 ```
 <script>
   addEventListener("DOMContentLoaded", () => console.log("DOMContentLoaded"));
@@ -35,4 +45,3 @@
   console.log("End of Body");
 </script>
 ```
-
