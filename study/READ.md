@@ -2,22 +2,22 @@
 
 <br />
 
-> 1주차
+# 1주차
 
 <br />
 
-지환
-
+## 1 : false가 나오는 이유??
+```
 0 == []; //true
 0 == "0"; //true
 "0" == []; //false
+```
 
-false가 나오는 이유??
 
 <br />
 
-진호
-
+## 2 : 이때 End of Body, script1, script2, DOMC~~ 순서??
+```
 <script>
 addEventListener("DOMContentLoaded", () => console.log("DOMContentLoaded"));
 </script>
@@ -29,5 +29,5 @@ Bottom of page
 <script>
   console.log("End of Body");
 </script>
+```
 
-이때 End of Body, script1, script2, DOMC~~ 순서??
