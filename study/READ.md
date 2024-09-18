@@ -42,7 +42,7 @@
 3. 반대로 붙었을 때?
 ```
 
-DOMContentLoaded : 돔트리까지만 형성되면 발생하는 이벤트
+### DOMContentLoaded : 돔트리까지만 형성되면 발생하는 이벤트
 
 ### load 이벤트와 다른 점
 
