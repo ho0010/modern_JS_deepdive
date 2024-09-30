@@ -47,3 +47,5 @@
 let, const 키워드는 블록 레벨 스코프를 지원한다
 
 <img width="570" alt="image" src="https://github.com/user-attachments/assets/4777e48b-3df0-41c0-8256-cc432ec2a042">
+
+foo안에서 bar를 호출할때 var x = 10; 은 foo 안에 선언된 지역 변수이기 때문에 bar 함수에서 참조를 못한다. 그래서 상위 스코프인 x = 1을 참조하게 된다. 그래서 1이 두번 출력된다
