@@ -1,4 +1,4 @@
-# 2️⃣1️⃣ strict mode
+# 2️⃣0️⃣ strict mode
 
 ## Strict mode란
 
