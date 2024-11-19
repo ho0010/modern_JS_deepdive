@@ -55,8 +55,107 @@ class 키워드를 사용해 정의한다. 생성자 함수와 마찬가지로 �
 
 ## 메서드
 
+클래스 몸체에는 0개 이상의 메서드만 정의할 수 있다. 클래스 몸체에는 0개 이상의 메서드만 정의할 수 있다. 클래스 몸체에서 정의할 수 있는 메서드는 constructor(생성자), 프로토타입 메서드, 정적 메서드의 세 가지가 있다.
+
+---
+
+### constructor
+
+constructor는 인스턴스를 생성하고 초기화하기 위한 특수한 메서드다. 이름 변경은 불가능하다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/dfc196fa-b8e9-4f44-a53b-ee4c67df500c">
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/e973885a-f3ec-4e6c-8f22-0ee52981fd58">
+
+모든 함수 객체가 가진 prototype 프로퍼티가 가르키는 프로토타입 객체의 constructor 프로퍼티는 클래스 자신을 가르키고 있다. 이는 클래스가 인스턴스를 생성하는 생성자 함수라는 것을 의미한다. 즉, new 연산자와 함께 클래스를 호출하면 클래스는 인스턴스를 생성한다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/bf391f37-34df-488f-ad28-86f66f3aaebd">
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/900cf004-3766-4154-96eb-ba29769b9bb4">
+
+constructor 메서드가 생성된 함수 객체나 생성한 인스턴스에 없는 것으로 보아 **단순한 메서드가 아닌 클래스가 평가되어 생성한 함수 객체 코드의 일부**라는 것에 주목하자. 다시 말해, 클래스 정의가 평가되면 constructor의 기술된 동작을 하는 함수 객체가 생성된다.
+
+> 참고 - 클래스의 constructor 메서드와 프로토타입의 constructor 프로퍼티는 다르다.
+
+constructor는 생성자 함수와 달리 클래스 내에 최대 한 개만 존재할 수 있다. 만약 클래스가 2개 이상의 constructor를 포함하면 문법 에러가 발생한다.
+
+constructor는 별도의 반환문을 갖지 않아야 한다. new 연산자와 함께 클래스가 호출되면 생성자 함수와 동일하게 암묵적으로 this, 즉 인스턴스를 반환하기 때문이다. 내부에서 명시적으로 this가 아닌 다른 값을 반환하는 것은 클래스의 기본 동작을 훼손한다. 
+
+만약 this가 아닌 다른 객체를 반환하면 this, 즉 인스턴스가 반환되지 않고 return에 명시한 객체가 반환된다. 원시값을 반환하면 무시되고 this가 반환된다.
+
+---
+
+### 프로토타입 메서드
+
+생성자 함수를 사용해 인스턴스를 생성하는 경우 프로토타입 메서드를 생성하기 위해서는 다음과 같이 명시적으로 프로토타입에 메서드를 추가해야 한다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/a782e6fe-7c96-4021-939c-49df47bee82a">
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/050d9fc2-f09f-47a6-a926-8f01f720ebe3">
+
+클래스 몸체에서 정의한 메서드는 생성자 함수에 의한 객체 생성 방식과는 다르게 클래스의 prototype 프로퍼티에 메서드를 추가하지 않아도 기본적으로 프로토타입 메서드가 된다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/9fdc1e2c-f9cc-4b82-a71c-3a274fb8f23b">
+
+생성자 함수와 같이 클래스가 생성한 인스턴스는 프로토타입 체인의 일원이 된다.
+
+결국 클래스는 생성자 함수와 같이 인스턴스를 생성하는 생성자 함수라고 볼 수 있다. 다시 말해, 클래스는 생성자 함수와 마찬가지로 프로토타입 기반의 객체 생성 메커니즘이다.
+
+### 정적 메서드
+
+정적 메서드는 인스턴스를 생성하지 않아도 호출할 수 있는 메서드를 말한다.
+
+생성자 함수는 정적 메서드를 생성하기 위해서는 명시적으로 생성자 함수에 메서드를 추가해야 한다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/5058b22b-ce68-44df-96bd-ee300e96a93f">
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/5671f939-d07b-4560-8366-a897e2875673">
+
+클래스에서는 메서드에 static 키워드를 붙이면 정적 메서드(클래스 메서드)가 된다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/80b29afc-4833-441e-a9ab-2a1601495f3f">
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/7c9de8c5-4893-46e1-ac71-157a271ea094">
+
+이처럼 정적 메서드는 클래스에 바인딩된 메서드가 된다. 클래스는 함수 객체로 평가되므로 자신의 프로퍼티/메서드를 소유할 수 있다.
+
+정적 메서드는 프로토타입 메세드처럼 인스턴스로 호출하지 않고 클래스로 호출한다.
+
+정적 메서드는 인스턴스로 호출할 수 없다. 정적 메서드가 바인딩된 클래스는 인스턴스의 프로토타입 체인상에 존재하지 않기 때문이다. 다시 말해, 인스턴스의 프로토타입 체인 상에는 클래스가 존재하지 않기 때문에 인스턴스로 클래스의 메서드를 상속받을 수 없다.
+
+---
+### 정적 메서드와 프로토타입 메서드의 차이
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/297a419c-8746-4e43-ab6b-ab015cc1ba4b">
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/c1eecd42-a2f1-412a-b8f0-1d3f96afe3c8">
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/94967be2-9437-4256-b388-e527856f1185">
+
+표준 빌트인 객체인 Math, Number, JSON, Object, Reflect 등은 다양한 정적 메서드를 가진다. 이들 정적 메서드는 애플리케이션 전역에서 사용할 유틸리티 함수다. 클래스 또는 생성자 함수를 하나의 네임스페이스로 사용해 정적 메서드를 모아 놓으면 이름 충돌 가능성을 줄여 주고 관련 함수들을 구조화할 수 있는 효과가 있다.
+
+---
+### 클래스에서 정의한 메서드의 특징
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/0cc50d79-0110-4d68-8a98-f23e243dd3e8">
+
 ## 클래스의 인스턴스 생성 과정
 
+new 연산자와 함께 클래스를 호출하면 생성자 함수와 마찬가지로 클래스의 내부 메서드 [[Construct]]가 호출된다. 클래스는 new 연산자 없이 호출할 수 없다.
+
+1. 인스턴스 생성과 this 바인딩
+  new 연산자와 함께 클래스를 호출하면 constructor의 내부 코드가 실행되기에 앞서 암묵적으로 빈 객체가 생성된다. 이 빈 객체가 클래스가 생성한 인스턴스다. 이때 클래스가 생성한 인스턴스의 프로토타입으로 클래스의 prototype 프로퍼티가 가르키는 객체가 설정된다. 그리고 암묵적으로 생성된 빈 객체, 즉 인스턴스는 this에 바인딩된다. 따라서 constructor 내부의 this는 클래스가 생성한 인스턴스를 가르킨다.
+   
+2. 인스턴스
+   constructor의 내부 코드가 실행되어 this에 바인딩되어 있는 인스턴스를 초기화한다. 즉, this에 바인딩되어 있는 인스턴스에 프로퍼티를 추가하고 constructor가 인수로 전달받은 초기값으로 인스턴스의 프로퍼티 값을 초기화한다. 만약, counstructor가 생력되었다면 이 과정도 생략된다.
+   
+3. 인스턴스 반환
+   클래스의 모든 처리가 끝나면 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환된다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/bd1b0c9d-8934-4b53-a14e-fc00142944da">
+
 ## 프로퍼티
+
+
 
 ## 상속에 의한 클래스 확장
