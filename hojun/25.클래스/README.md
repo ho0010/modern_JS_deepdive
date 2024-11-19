@@ -156,6 +156,115 @@ new 연산자와 함께 클래스를 호출하면 생성자 함수와 마찬가�
 
 ## 프로퍼티
 
+### 인스턴스 프로퍼티
+
+인스턴스 프로퍼티는 constructor 내부에서 정의해야 한다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/b5498a5a-4a1a-4f65-b0f9-3b344592467d">
+
+constructor 내부에서 this에 추가한 프로퍼티는 언제나 클래스가 생성한 인스턴스의 프로퍼티가 되고 인스턴스 프로퍼티는 언제나 public하다.
+
+### 접근자 프로퍼티
+
+접근자 프로퍼티는 자체적으로 값[[value]]를 갖지 않고 다른 데이터 프로퍼티의 값을 읽거나 저장할 때 사용하는 접근자 함수로 구성된 프로퍼티다. 즉 getter함수와 setter 함수로 구성되어 있다. 이때 getter와 setter이름은 인스턴스 프로퍼티처럼 사용딘다. 다시 말해 getter는 호출하는 것이 아니라 프로퍼티처럼 참조하는 형식으로 사용한다. setter도 마찬가지다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/90562c3d-c62a-4aa6-9ad4-d8a28d1e0ec1">
+
+### 클래스 필드 정의 제안
+
+클래스 필드는 클래스 기반 객체지향 언어에서 클래스가 생성할 인스턴스의 프로퍼티를 가르키는 용어이다.
+
+자바에서의 클래스와 비교하며 JS의 클래스에 대해 서술한 내용~~
+
+### private 필드 정의 제안
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/4a414273-16c5-4011-8d3d-eccaa1ee3133">
+
+private 필드는 반드시 클래스 몸체에 정의해야 한다.
+
+### static 필드 정의 제안
+
+클래스에는 static 키워드를 사용해 정적 메서드를 정의할 수 있다. 하지만 static 키워드를 사용해 정적 필드를 정의할 수는 없었다.
+하지만 static public 필드, static private 필드, static private 메서드를 정의할 수 있는 새로운 표준 사양인 "Static class features"가 제안되었다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/47b91086-0287-48c8-bf25-8b94efdbff59">
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/8c409148-911b-4195-bb8f-6020e7624043">
 
 
 ## 상속에 의한 클래스 확장
+
+### 클래스 상속과 생성자 함수 상속
+
+프로토타입 기반 상속 = 프로토타입 체인을 통해 다른 객체의 자산을 상속 받음
+
+상속에 의한 클래스 확장 = 기존 클래스를 상속받아 새로운 클래스를 확장해 정의
+
+<img width="513" alt="image" src="https://github.com/user-attachments/assets/bfaf239f-6c86-4357-902b-62d9d2bbfd2a">
+
+<img width="513" alt="image" src="https://github.com/user-attachments/assets/9ae137ae-efec-4f93-bcc0-cf5297b9d9e9">
+
+클래스와 생성자 함수는 인스턴스를 생성할 수 있는 함수라는 점에서 유사하다. 하지만 클래스는 상속을 통해 기존 클래스를 확장할 수 있는 문법(extends 키워드)이 제공되지만 생성자 함수는 그렇지 않다.
+
+---
+### extends 키워드
+
+상속을 통해 클래스를 확장하려면 extends 키워드를 사용해 상속받을 클래스를 정의한다.
+
+<img width="513" alt="image" src="https://github.com/user-attachments/assets/da97cd6c-f99d-4d6d-9b7e-f16203e9eed9">
+
+서브 클래스 = 상속을 통해 확장된 클래스
+
+수퍼 클래스 = 서브클래스에게 상속된 클래스
+
+### 동적 상속
+
+extends 키워드는 클래스뿐만 아니라 생성자 함수를 상속받아 클래스를 확장할 수 있다. 단, extends 키워드 앞에는 반드시 클래스가 와야 한다.
+
+<img width="513" alt="image" src="https://github.com/user-attachments/assets/f810aa9b-a0b3-410b-a777-974e3adaec73">
+
+extends 다음에는 클래스뿐만 아니라 [[Construct]] 내부 메서드를 갖는 함수 객체로 평가될 수 있는 모든 표현식을 사용할 수 있다. 이를 통해 동적으로 상속받을 대상을 결정할 수 있다.
+
+<img width="513" alt="image" src="https://github.com/user-attachments/assets/2b8b0373-c875-4f55-9cd0-06ca79a0e86b">
+
+### 서브클래스의 constructor
+
+수퍼클래스와 서브클래스 모두 constructor를 생략하면 빈 객체가 생성된다.
+
+### super 키워드
+
+super 키워드는 함수처럼 호출할 수도 있고 this와 같이 식별자처럼 참조할 수 있는 특수한 키워드다.
+
+super 키워드의 동작 과정
+
+1. super을 호출하면 수퍼클래스의 constructor를 호출한다.
+2. super를 참조하면 수퍼클래스의 메서드를 호출할 수 있다.
+
+**super 호출**
+
+<img width="513" alt="image" src="https://github.com/user-attachments/assets/55ce8c6c-ae87-4404-8488-9edd92360508">
+
+super 호출 시 주의 사항
+
+1. 서브클래스에서 constructor를 생략하지 않는 경우 서브클래스의 constructor에서는 반드시 super를 호출해야 한다.
+2. 서브클래스의 constructor에서 super를 호출하기 전에는 this를 참조할 수 없다.
+3. super는 반드시 서브클래스의 constructor에서만 호출한다. 서브클래스가 아닌 클래스의 constructor나 함수에서 super를 호출하면 에러가 발생한다.
+
+**super 참조**
+
+...
+
+### 상속 클래스의 인스턴스 생성 과정
+
+상속 관계에 있는 두 클래스가 어떻게 협력하며 인스턴스를 생성하는지 살펴보자.
+
+1. 서브클래스의 super 호출
+2. 수퍼클래스의 인스턴스 생성과 this 바인딩
+3. 수퍼클래스의 인스턴스 초기화
+4. 서브클래스 constructor로의 복귀와 this바인딩
+5. 서브클래스의 인스턴스 초기화
+6. 인스턴스 반환
+
+### 표준 빌트인 생성자 함수 확장
+
+extends 키워드 다음에는 클래스뿐만 아니라 [[Constructor]] 내부 메서드를 갖는 함수 객체로 평가될 수 있는 모든 표현식을 사용할 수 있다. String, Number, Array 같은 표준 빌트인 객체도 [[Constructor]] 내부 메서드를 갖는 생성자 함수이므로 extends 키워드를 사용해 확장할 수 있다.
