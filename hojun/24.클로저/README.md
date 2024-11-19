@@ -60,8 +60,61 @@ foo함수와 bar 함수는 모두 전역에서 함수 선언문으로 정의되�
 
 ## 클로저와 렉시컬 환경
 
+**JS에서는 외부 함수보다 중첩 함수가 더 오래 유지되는 경우 중첩 함수는 이미 생명 주기가 종료한 외부 함수의 변수를 참조할 수 있다. 이러한 중첩 함수를 클로저라고 부른다.**
+
+**클로저에 의해 참조되는 상위 스코프의 변수를 자유 변수라고 부른다.**
+
+> MDN 정의 - 클로저는 함수와 그 함수가 선언된 렉시컬 환경과의 조합이다.
+
+위에서 말하는 그 함수가 선언된 렉시컬 환경이란 함수가 정의된 위치의 스코프, 즉 상위 스코프를 의미하는 실행 컨텍스트의 렉시컬 환경을 말한다. JS의 모든 함수는 자신의 상위 스코프를 기억한다. 이것은 함수의 호출위치와 무관하게 작동한다.
+
+**중첩 함수가 상위 스코프의 식별자를 참조하고 있고 중첩 함수가 외부 함수보다 더 오래 유지되는 경우로 클로저를 한정하는 것을 기억하자**
+
+<img width="596" alt="image" src="https://github.com/user-attachments/assets/865c333e-c23a-4ddb-8bb3-df4d815e2eca">
+
 ## 클로저의 활용
+
+**클로저는 상태를 안전하게 변경하고 유지하기 위해 사용된다.** 다시 말해, 상태가 의도치 않게 변경되지 않도록 상태를 안전하게 은닉하고 특정 함수에게만 상태 변경을 허용하기 위해 사용한다.
+
+<img width="577" alt="image" src="https://github.com/user-attachments/assets/f833907f-778c-4e58-858b-c2d3036ce066">
+
+<img width="577" alt="image" src="https://github.com/user-attachments/assets/2af2f1fa-b3ae-4625-bfca-a87c9729ea89">
+
+위 예시의 단점을 보완하면 이렇게 된다.
+
+<img width="577" alt="image" src="https://github.com/user-attachments/assets/a4d604c8-3c7b-4e8e-9b1c-6ab7f65956a0">
+
+<img width="577" alt="image" src="https://github.com/user-attachments/assets/e1ddb39b-9454-4df0-8acf-0b079c54909d">
 
 ## 캡슐화와 정보 은닉
 
+**캡슐화는 객체의 상태를 나타내는 프로퍼티와 프로퍼티를 참조하고 조작할 수 있는 동작인 메서드를 하나로 묶는 것을 말한다.**
+
+캡슐화는 객체의 특정 프로퍼티나 메서드를 감출 목적으로 사용하기도 하는데 이를 **정보 은닉**이라 한다.
+
+정보 은닉은 필요에 따라 데이터를 감추고 접근을 방지해 정보를 보호하고, 객체 간의 상호 의존성, 즉 결합도를 낮추는 효과가 있다.
+
+> JS는 public, private, protectedd 같은 접근 제한자를 제공하지 않는다. 따라서 JS 객체의 모든 프로퍼티와 메서드는 기본적으로 public하다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/3c700982-89ac-4bde-beef-ccdb78121b9f">
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/7702bb0b-2106-46cb-b5f2-87f4c5cb06fb">
+
+
 ## 자주 발생하는 실수
+
+클로저를 사용할 때 자주 발생할 수 있는 실수
+
+위 예시에서는  var로 선언한 i 변수는 블록 레벨 스코프가 아닌 함수 레벨 스코프를 갖기 때문에 전역 변수다. 때문에 0, 1, 2가 아닌 3만 출력된다
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/8ad4e309-97f5-45f0-adb3-9f8a3572cda6">
+
+즉시 실행 함수로 전역 변수 i에 현재 할당되어 있는 값을 인수로 받아 매개변수 id에 할당한 후 중첩 함수를 반환하고 종료한다. 즉시 실행 함수가 반환한 함수는 funcs 배열에 순차적으로 저장된다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/16d54da5-4678-4277-909c-04f9476b67e4">
+
+JS 함수 레벨 스코프 특성으로 인해 var 키워드로 선언한 변수가 전역 변수가 되기 때문에 발생하는 현상이다. let키워드를 사용하면 이 같은 번거로움이 해결된다.
+
+<img width="569" alt="image" src="https://github.com/user-attachments/assets/0bb07960-a090-4a5f-b9d3-cb9e5a0a356a">
+
+
