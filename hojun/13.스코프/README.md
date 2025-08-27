@@ -46,6 +46,28 @@
 
 let, const 키워드는 블록 레벨 스코프를 지원한다
 
+```js
+function foo() {
+  var a = 1;      // ← foo 함수 스코프에 속함
+  if (true) {
+    var a = 2;    // ← 같은 스코프(블록이 아님)! 위 a를 덮어씀
+  }
+  console.log(a); // 2
+}
+foo();
+```
+
+```js
+function bar() {
+  let b = 1;
+  if (true) {
+    let b = 2;     // ← 블록 스코프의 b(별개)
+  }
+  console.log(b);  // 1
+}
+bar();
+```
+
 <img width="570" alt="image" src="https://github.com/user-attachments/assets/4777e48b-3df0-41c0-8256-cc432ec2a042">
 
 foo안에서 bar를 호출할때 var x = 10; 은 foo 안에 선언된 지역 변수이기 때문에 bar 함수에서 참조를 못한다. 그래서 상위 스코프인 x = 1을 참조하게 된다. 그래서 1이 두번 출력된다
